@@ -38,14 +38,18 @@ const { sign } = require("jsonwebtoken");
 const { APP_SECRET } = require("../config");
 const { prisma } = require("../prisma/generated/prisma-client");
 const { getUserId } = require("../utils");
+const rules = require("../utils/permission");
 
 module.exports = {
   yoga: {
     resolvers: {
       Query: {
-        me: (parent, args, ctx) => {
-          const userId = getUserId(ctx);
-          return prisma.user({ id: userId });
+        me: {
+          shield: rules.isAuthenticatedUser,
+          resolve: (parent, args, ctx) => {
+            const userId = getUserId(ctx);
+            return prisma.user({ id: userId });
+          }
         }
       },
       Mutation: {
@@ -67,21 +71,6 @@ module.exports = {
             user
           };
         }
-      }
-    }
-  }
-};
-```
-
-```js
-// Meta.js
-const rules = require("../utils/permission");
-
-module.exports = {
-  metas: {
-    Query: {
-      me: {
-        shield: rules.isAuthenticatedUser
       }
     }
   }

@@ -8,7 +8,7 @@ module.exports = {
     beforeStart() {
       let shields = { Query: {}, Mutation: {} };
       _.each(shields, (v, type) => {
-        const target = Mhr.metas[type];
+        const target = _.get(Mhr, `yoga.resolvers.${type}`);
         _.each(target, (v, k) => {
           if (v.shield) {
             _.set(shields[type], k, v.shield);
