@@ -1,6 +1,6 @@
 ## gqml
 
-an framework base on menhera graphql-yoga
+a framework base on menhera graphql-yoga
 
 ### Start
 
