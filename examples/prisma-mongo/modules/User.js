@@ -3,7 +3,10 @@ const { sign } = require("jsonwebtoken");
 const { APP_SECRET } = require("../config");
 const { prisma } = require("../prisma/generated/prisma-client");
 const { getUserId } = require("../utils");
+const { PubSub } = require("graphql-yoga");
 const rules = require("../utils/permission");
+
+const pubsub = new PubSub();
 
 module.exports = {
   yoga: {
@@ -35,6 +38,18 @@ module.exports = {
             token: sign({ userId: user.id }, APP_SECRET),
             user
           };
+        }
+      },
+      Subscription: {
+        counter: {
+          subscribe: (parent, args) => {
+            const channel = Math.random()
+              .toString(36)
+              .substring(2, 15);
+            let count = 0;
+            setInterval(() => pubsub.publish(channel, { counter: { count: count++ } }), 2000);
+            return pubsub.asyncIterator(channel);
+          }
         }
       }
     }

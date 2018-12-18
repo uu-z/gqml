@@ -15,9 +15,18 @@ type Mutation {
   login(email: String!, password: String!): AuthPayload!
 }
 
+type Subscription {
+  counter: Counter!
+}
+
 type AuthPayload {
   token: String!
   user: User!
+}
+
+type Counter {
+  count: Int!
+  countStr: String
 }
 
 type Post {
