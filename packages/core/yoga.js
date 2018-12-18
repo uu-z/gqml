@@ -26,7 +26,9 @@ module.exports = {
       let yoga = _.get(Mhr, "yoga", {});
       _.each(yoga.resolvers, (v, k) => {
         _.each(v, (v1, k1) => {
-          _.set(yoga.resolvers, `${k}.${k1}`, v1.resolve);
+          if (v1.resolve) {
+            _.set(yoga.resolvers, `${k}.${k1}`, v1.resolve);
+          }
         });
       });
 

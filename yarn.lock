@@ -9,6 +9,11 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
+"@types/bcrypt@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/@types/bcrypt/-/bcrypt-3.0.0.tgz#851489a9065a067cb7f3c9cbe4ce9bed8bba0876"
+  integrity sha512-nohgNyv+1ViVcubKBh0+XiNJ3dO8nYu///9aJ4cgSqv70gBL+94SNy/iC2NLzKPT2Zt/QavrOkBVbZRLZmw6NQ==
+
 "@types/body-parser@*":
   version "1.17.0"
   resolved "https://registry.npmjs.org/@types/body-parser/-/body-parser-1.17.0.tgz#9f5c9d9bd04bb54be32d5eb9fc0d8c974e6cf58c"
@@ -1245,10 +1250,10 @@ media-typer@0.3.0:
   resolved "http://registry.npmjs.org/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
-menhera@^0.8.5-rc2:
-  version "0.8.5-rc2"
-  resolved "https://registry.npmjs.org/menhera/-/menhera-0.8.5-rc2.tgz#bd0a131b11b8ead307146f3caa84216117d3aa11"
-  integrity sha512-yg7mVY6fnXkXzl/wHcgSVft9xaESEE6VgD1xY2GAMnqNDpo7OxoGMD4ZpR8z/q09ry47+DwB7yISpr7pkSOfxQ==
+menhera@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.npmjs.org/menhera/-/menhera-0.9.1.tgz#2efc6393718176ce42c69601ec02a8f9ecf31155"
+  integrity sha512-k8vomlTCz+12BzmMhX/ay6jnD2B0y5JTUzrBzrUMVhRZkYln8dD5OFXSacmzhLAcJy9rVsSeWFQwBz4MzlFezQ==
   dependencies:
     lodash.get "^4.4.2"
     lodash.has "^4.5.2"
@@ -1875,7 +1880,7 @@ streamsearch@0.1.2:
 
 string-width@^1.0.1:
   version "1.0.2"
-  resolved "https://registry.npmjs.org/string-width/-/string-width-1.0.2.tgz#118bdf5b8cdc51a2a7e70d211e07e2b0b9b107d3"
+  resolved "http://registry.npmjs.org/string-width/-/string-width-1.0.2.tgz#118bdf5b8cdc51a2a7e70d211e07e2b0b9b107d3"
   integrity sha1-EYvfW4zcUaKn5w0hHgfisLmxB9M=
   dependencies:
     code-point-at "^1.0.0"
