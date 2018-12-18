@@ -100,7 +100,7 @@ const utils = {
   load(dir) {
     dir = Array.isArray(dir) ? dir : [dir];
     return dir.map(val => ({
-      mount: _.values(
+      _run: _.values(
         requireDir(path.resolve(val), {
           noCache: true,
           filter(file) {
