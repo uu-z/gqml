@@ -1,7 +1,7 @@
 const gqml = require("../../index");
 const path = require("path");
 
-gqml.$use({
+gqml.use({
   core: {
     start: {
       modules: ["modules"].map(m => path.join(__dirname, m))
@@ -11,7 +11,8 @@ gqml.$use({
     typeDefs: path.join(__dirname, "./schema.graphql"),
     context: ctx => ctx,
     start: {
-      port: 8001
+      port: 8001,
+      APOLLO_ENGINE_KEY: "123"
     }
   }
 });

@@ -15,7 +15,7 @@ module.exports = {
           }
         });
       });
-      Mhr.$use({
+      Mhr.use({
         yoga: {
           middlewares: [shield(shields)]
         }

@@ -15,7 +15,7 @@ $ yarn add gqml
 const gqml = require("gqml");
 const path = require("path");
 
-gqml.$use({
+gqml.use({
   core: {
     start: {
       modules: ["modules"].map(m => path.resolve(__dirname, m))

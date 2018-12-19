@@ -22,7 +22,8 @@ module.exports = {
     },
     middlewares: utils.injectArray("yoga.middlewares"),
     start({ _val: options }) {
-      Mhr.$use({ yoga: { beforeStart: options } });
+      const { port, APOLLO_ENGINE_KEY } = options;
+      Mhr.use({ yoga: { beforeStart: options } });
       let yoga = _.get(Mhr, "yoga", {});
       _.each(yoga.resolvers, (v, k) => {
         _.each(v, (v1, k1) => {
@@ -31,9 +32,28 @@ module.exports = {
           }
         });
       });
-
       const server = new GraphQLServer(yoga);
-      server.start(options, ({ port }) => console.info(`Server is running on ${port}`));
+
+      if (APOLLO_ENGINE_KEY) {
+        const { ApolloEngine } = require("apollo-engine");
+        const engine = new ApolloEngine({
+          apiKey: APOLLO_ENGINE_KEY
+        });
+        const httpServer = server.createHttpServer(options);
+        engine.listen(
+          {
+            port,
+            httpServer,
+            graphqlPaths: ["/"]
+          },
+          () => {
+            console.info(`Apollo Server is running on ${port}`);
+          }
+        );
+      }
+      if (!APOLLO_ENGINE_KEY) {
+        server.start(options, ({ port }) => console.info(`Yoga Server is running on ${port}`));
+      }
     }
   }
 };

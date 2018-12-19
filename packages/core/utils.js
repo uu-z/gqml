@@ -91,7 +91,7 @@ const utils = {
   },
   relay(key) {
     return ({ _key, _val }) =>
-      Mhr.$use({
+      Mhr.use({
         [key]: {
           [_key]: _val
         }

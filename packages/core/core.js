@@ -7,8 +7,8 @@ module.exports = {
   $core: {
     start({ _val: options }) {
       const { plugins = [], modules = [] } = options;
-      Mhr.$use(utils.load(plugins));
-      Mhr.$use(utils.load(modules));
+      Mhr.use(utils.load(plugins));
+      Mhr.use(utils.load(modules));
     }
   }
 };
