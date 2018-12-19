@@ -1,10 +1,9 @@
 {
   "name": "gqml",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "apollo-engine": "^1.1.2",
     "bluebird": "^3.5.3",
     "graphql-shield": "^4.1.1",
     "graphql-yoga": "^1.16.7",
