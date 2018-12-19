@@ -1,10 +1,18 @@
-version: '3'
+version: "3"
 services:
+  gqml:
+    build: .
+    volumes:
+      - gqml:/app
+    command: "npm start"
+    restart: always
+    ports:
+      - 8001:8001
   prisma:
     image: prismagraphql/prisma:1.22
     restart: always
     ports:
-    - "4466:4466"
+      - 4466:4466
     environment:
       PRISMA_CONFIG: |
         port: 4466
@@ -21,8 +29,9 @@ services:
       MONGO_INITDB_ROOT_USERNAME: prisma
       MONGO_INITDB_ROOT_PASSWORD: prisma
     ports:
-      - "27017:27017"
+      - 27017:27017
     volumes:
       - mongo:/var/lib/mongo
 volumes:
+  gqml:
   mongo:

@@ -1,5 +1,6 @@
-const gqml = require("../../index");
+const gqml = require("gqml");
 const path = require("path");
+const config = require("./config");
 
 gqml.use({
   core: {
@@ -11,10 +12,7 @@ gqml.use({
     typeDefs: path.join(__dirname, "./schema.graphql"),
     context: ctx => ctx,
     start: {
-      port: 8001,
-      APOLLO_ENGINE_KEY: "123"
+      port: 8001
     }
   }
 });
-
-// console.log(gqml.yoga);
