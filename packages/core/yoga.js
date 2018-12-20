@@ -2,10 +2,12 @@ const Mhr = require("menhera").default;
 const { GraphQLServer } = require("graphql-yoga");
 const { utils } = require("./utils");
 const _ = require("lodash");
+const { mergeTypes } = require("merge-graphql-schemas");
+const { importSchema } = require("graphql-import");
+const path = require("path");
 
 module.exports = {
   $yoga: {
-    ...utils.injectItem("yoga"),
     resolvers: {
       $O({ _key, _val }) {
         const key = `yoga.resolvers.${_key}`;
@@ -20,12 +22,28 @@ module.exports = {
         _.set(Mhr, key, { ...target, ..._val });
       }
     },
+    typeDefs: {
+      _({ _val }) {
+        _val = Array.isArray(_val) ? _val : [_val];
+        _val = _val.map(i => {
+          if (i.endsWith("graphql")) {
+            return importSchema(path.resolve(i));
+          }
+          return i;
+        });
+        let key = "yoga.typeDefs";
+        let target = _.get(Mhr, key, []);
+        _.set(Mhr, key, [...target, ..._val]);
+      }
+    },
     middlewares: utils.injectArray("yoga.middlewares"),
     start({ _val: options }) {
       const { port, APOLLO_ENGINE_KEY } = options;
 
       Mhr.use({ yoga: { beforeStart: options } });
       let yoga = _.get(Mhr, "yoga", {});
+
+      yoga.typeDefs = mergeTypes(yoga.typeDefs);
       _.each(yoga.resolvers, (v, k) => {
         _.each(v, (v1, k1) => {
           if (v1.resolve) {

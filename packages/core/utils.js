@@ -80,6 +80,7 @@ const utils = {
   injectArray(name) {
     return {
       _({ _val }) {
+        _val = Array.isArray(_val) ? _val : [_val];
         let target = _.get(Mhr, name, []);
         _.set(Mhr, name, [...target, ..._val]);
       }

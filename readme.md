@@ -18,11 +18,10 @@ gqml.use({
   core: {
     start: {
       // plugins:[],
-      modules: ["modules"]
+      modules: [`${__dirname}/modules`]
     }
   },
   yoga: {
-    typeDefs: "./schema.graphql",
     context: ctx => ctx,
     start: {
       // APOLLO_ENGINE_KEY: "",   @yarn add apollo-engine
@@ -32,23 +31,19 @@ gqml.use({
 });
 ```
 
-```graphql
-# ./schema.graphql
-type Query {
-  hello(name: String): String!
-}
-```
-
 ```js
 // modules/Test.js
 module.exports = {
   yoga: {
+    typeDefs: `
+      type Query {
+        hello(name: String): String!
+      }
+    `,
     resolvers: {
       Query: {
         hello: (_, { name }) => `Hello ${name || "World"}`
-      },
-      Mutation: {},
-      Subscription: {}
+      }
     }
   }
 };

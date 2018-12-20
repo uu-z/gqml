@@ -5,7 +5,7 @@ gqml.use({
   core: {
     start: {
       // plugins:[],
-      modules: ["modules"]
+      modules: [`${__dirname}/modules`]
     }
   },
   yoga: {
@@ -14,7 +14,7 @@ gqml.use({
     //   Mutation: {},
     //   Subscription: {}
     // },
-    typeDefs: "./schema.graphql",
+    typeDefs: `${__dirname}/schema.graphql`,
     context: ctx => ctx,
     start: {
       // APOLLO_ENGINE_KEY: "",   @yarn add apollo-engine
