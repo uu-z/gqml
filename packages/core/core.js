@@ -3,7 +3,6 @@ const { utils } = require("./utils");
 const _ = require("lodash");
 
 module.exports = {
-  $metas: utils.injectObjectDeep("metas"),
   $core: {
     start({ _val: options }) {
       const { plugins = [], modules = [] } = options;

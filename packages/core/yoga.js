@@ -5,7 +5,7 @@ const _ = require("lodash");
 
 module.exports = {
   $yoga: {
-    ...utils.injectVarFun("yoga"),
+    ...utils.injectItem("yoga"),
     resolvers: {
       $O({ _key, _val }) {
         const key = `yoga.resolvers.${_key}`;

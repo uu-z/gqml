@@ -18,13 +18,9 @@ Object.assign(console, {
 });
 
 const utils = {
-  injectVarFun(name) {
+  injectItem(name) {
     return {
-      $F({ _key, _val }) {
-        const key = `${name}.${_key}`;
-        _.set(Mhr, key, _val);
-      },
-      $V({ _key, _val }) {
+      I({ _key, _val }) {
         const key = `${name}.${_key}`;
         _.set(Mhr, key, _val);
       }

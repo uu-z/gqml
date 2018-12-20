@@ -1,10 +1,11 @@
-const gqml = require("gqml");
+// const gqml = require("gqml");
+const gqml = require("../../index");
 const path = require("path");
-const config = require("./config");
 
 gqml.use({
   core: {
     start: {
+      // plugins:[],
       modules: ["modules"].map(m => path.join(__dirname, m))
     }
   },
@@ -14,5 +15,10 @@ gqml.use({
     start: {
       port: 8001
     }
+    // resolvers: {
+    //   Query: {},
+    //   Mutation: {},
+    //   Subscription: {}
+    // }
   }
 });

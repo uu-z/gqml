@@ -14,17 +14,17 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.npm.taobao.org/-/user/org.couchdb.user:vaiii: conflict
-      at Request.params.callback [as _callback] (C:\Users\ncysa\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:65894:18)
-      at Request.self.callback (C:\Users\ncysa\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:129018:22)
-      at Request.emit (events.js:189:13)
-      at Request.<anonymous> (C:\Users\ncysa\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:129990:10)
-      at Request.emit (events.js:189:13)
-      at IncomingMessage.<anonymous> (C:\Users\ncysa\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:129912:12)
-      at Object.onceWrapper (events.js:277:13)
-      at IncomingMessage.emit (events.js:194:15)
-      at endReadableNT (_stream_readable.js:1107:12)
-      at process.internalTickCallback (internal/process/next_tick.js:72:19)
+  Error: canceled
+      at Interface.<anonymous> (C:\Users\ncysa\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:125278:13)
+      at Interface.emit (events.js:189:13)
+      at Interface._ttyWrite (readline.js:801:16)
+      at ReadStream.onkeypress (readline.js:184:10)
+      at ReadStream.emit (events.js:189:13)
+      at emitKeys (internal/readline.js:424:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (readline.js:1073:36)
+      at ReadStream.emit (events.js:189:13)
+      at addChunk (_stream_readable.js:288:12)
 
 npm manifest: 
   {
