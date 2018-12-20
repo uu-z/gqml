@@ -23,6 +23,7 @@ module.exports = {
     middlewares: utils.injectArray("yoga.middlewares"),
     start({ _val: options }) {
       const { port, APOLLO_ENGINE_KEY } = options;
+
       Mhr.use({ yoga: { beforeStart: options } });
       let yoga = _.get(Mhr, "yoga", {});
       _.each(yoga.resolvers, (v, k) => {
