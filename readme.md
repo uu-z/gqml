@@ -13,13 +13,12 @@ $ yarn add gqml
 ```js
 // app.js
 const gqml = require("gqml");
-const path = require("path");
 
 gqml.use({
   core: {
     start: {
       // plugins:[],
-      modules: ["modules"].map(m => path.join(__dirname, m))
+      modules: ["modules"]
     }
   },
   yoga: {
@@ -28,7 +27,7 @@ gqml.use({
     //   Mutation: {},
     //   Subscription: {}
     // },
-    typeDefs: path.join(__dirname, "./schema.graphql"),
+    typeDefs: "./schema.graphql",
     context: ctx => ctx,
     start: {
       // APOLLO_ENGINE_KEY: "",   @yarn add apollo-engine
@@ -39,7 +38,7 @@ gqml.use({
 ```
 
 ```js
-// User.js
+// modules/User.js
 const { hash, compare } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 const { APP_SECRET } = require("../config");
