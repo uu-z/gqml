@@ -1,0 +1,9 @@
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "gqml": "^0.0.5"
+  }
+}
