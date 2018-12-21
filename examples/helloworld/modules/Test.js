@@ -7,7 +7,13 @@ module.exports = {
     `,
     resolvers: {
       Query: {
-        hello: (_, { name }) => `Hello ${name || "World"}`
+        Test: {
+          hide: true,
+          resolve: (_, { name }) => `Hello ${name || "World"}`
+        },
+        hello: {
+          resolve: (_, { name }) => `Hello ${name || "World"}`
+        }
       }
     }
   }

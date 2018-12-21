@@ -15,9 +15,9 @@ gqml.use({
     //   Subscription: {}
     // },
     typeDefs: `${__dirname}/schema.graphql`,
-    context: ctx => ctx,
     start: {
       // APOLLO_ENGINE_KEY: "",   @yarn add apollo-engine
+      context: ctx => ctx,
       port: 8001
     }
   }

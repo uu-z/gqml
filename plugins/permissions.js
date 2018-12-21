@@ -4,20 +4,15 @@ const _ = require("lodash");
 
 module.exports = {
   $yoga: {
-    beforeStart() {
+    _resolver({ _val }) {
       let shields = {};
-      _.each({ Query: {}, Mutation: {}, Subscription: {} }, (v, type) => {
-        const target = _.get(Mhr, `yoga.resolvers.${type}`);
-        _.each(target, (v, k) => {
-          if (v.shield) {
-            _.set(shields[type], k, v.shield);
-          }
-        });
+      _.each(_val, (v, k) => {
+        if (v.shield) {
+          _.set(shields, `${v.kind}.${k}`, v.shield);
+        }
       });
       Mhr.use({
-        yoga: {
-          middlewares: [shield(shields)]
-        }
+        yoga: { middlewares: [shield(shields)] }
       });
     }
   }

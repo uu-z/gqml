@@ -957,10 +957,10 @@ media-typer@0.3.0:
   resolved "http://registry.npmjs.org/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
-menhera@^0.9.4-rc3:
-  version "0.9.4-rc3"
-  resolved "https://registry.npmjs.org/menhera/-/menhera-0.9.4-rc3.tgz#96e1da78d14e1400079581b4325a3607b57baf27"
-  integrity sha512-GyAQ0vg5zVfYzlHdj0Gs2BYHAqVQ8S70mxBz7n99DIV+5qZpputEgGRaMd6yTbJN3xCp2TU0nxHHMrB+FRyopQ==
+menhera@^0.9.6:
+  version "0.9.6"
+  resolved "https://registry.npmjs.org/menhera/-/menhera-0.9.6.tgz#b484668413f42017d9853757bf4aa06fbe0a2b36"
+  integrity sha512-DSsUbc+2jNOzfeHJe68R2N0hDQ4Lv7vH1iLwH2qHTy//vNXj2tvde0xA+FGYd/znGary0ZopJP1w7gfxO6y9QA==
   dependencies:
     lodash.get "^4.4.2"
     lodash.has "^4.5.2"

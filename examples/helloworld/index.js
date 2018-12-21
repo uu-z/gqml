@@ -9,9 +9,9 @@ gqml.use({
     }
   },
   yoga: {
-    context: ctx => ctx,
     start: {
       // APOLLO_ENGINE_KEY: "",   @yarn add apollo-engine
+      context: ctx => ctx,
       port: 8001
     }
   }

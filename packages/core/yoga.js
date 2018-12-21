@@ -1,4 +1,5 @@
 const Mhr = require("menhera").default;
+const { aSet } = require("menhera");
 const { GraphQLServer } = require("graphql-yoga");
 const { utils } = require("./utils");
 const _ = require("lodash");
@@ -10,18 +11,23 @@ module.exports = {
   $yoga: {
     resolvers: {
       $O({ _key, _val }) {
-        const key = `yoga.resolvers.${_key}`;
-        const target = _.get(Mhr, key, {});
-        _.each(_val, (v, k) => {
-          if (_.isFunction(v)) {
-            _val[k] = {
-              resolve: v
-            };
+        const key = `yoga._resolvers`;
+        aSet(Mhr, {
+          [key]: ({ tar = {} }) => {
+            _.each(_val, (v, k) => {
+              if (_.isFunction(v)) {
+                _val[k] = {
+                  resolve: v
+                };
+              }
+              _val[k].kind = _key;
+            });
+            return { ...tar, ..._val };
           }
         });
-        _.set(Mhr, key, { ...target, ..._val });
       }
     },
+    middlewares: utils.injectArray("yoga.middlewares"),
     typeDefs: {
       _({ _val }) {
         _val = Array.isArray(_val) ? _val : [_val];
@@ -31,26 +37,27 @@ module.exports = {
           }
           return i;
         });
-        let key = "yoga.typeDefs";
-        let target = _.get(Mhr, key, []);
-        _.set(Mhr, key, [...target, ..._val]);
+        aSet(Mhr, { "yoga.typeDefs": ({ tar = [] }) => [...tar, ..._val] });
       }
     },
-    middlewares: utils.injectArray("yoga.middlewares"),
     start({ _val: options }) {
       const { port, APOLLO_ENGINE_KEY } = options;
-
-      Mhr.use({ yoga: { beforeStart: options } });
       let yoga = _.get(Mhr, "yoga", {});
+      yoga = { ...yoga, ...options, typeDefs: mergeTypes(yoga.typeDefs) };
+      const { _resolvers } = yoga;
 
-      yoga.typeDefs = mergeTypes(yoga.typeDefs);
-      _.each(yoga.resolvers, (v, k) => {
-        _.each(v, (v1, k1) => {
-          if (v1.resolve) {
-            _.set(yoga.resolvers, `${k}.${k1}`, v1.resolve);
-          }
-        });
+      Mhr.use({
+        yoga: {
+          _resolvers
+        }
       });
+
+      _.each(_.omitBy(_resolvers, _.isUndefined), (v, k) => {
+        if (v.resolve) {
+          _.set(yoga, `resolvers.${v.kind}.${k}`, v.resolve);
+        }
+      });
+
       const server = new GraphQLServer(yoga);
 
       if (APOLLO_ENGINE_KEY) {
@@ -72,6 +79,13 @@ module.exports = {
       }
       if (!APOLLO_ENGINE_KEY) {
         server.start(options, ({ port }) => console.info(`Yoga Server is running on ${port}`));
+      }
+    },
+    _resolvers: {
+      $({ _key, _val }) {
+        if (_val.hide) {
+          _.set(Mhr, `yoga._resolvers.${_key}`, undefined);
+        }
       }
     }
   }

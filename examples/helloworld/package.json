@@ -5,5 +5,6 @@
   "license": "MIT",
   "devDependencies": {
     "gqml": "^0.0.5"
-  }
+  },
+  "dependencies": {}
 }
