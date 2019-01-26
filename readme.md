@@ -14,21 +14,26 @@ $ yarn add gqml
 // index.js
 const { gqml } = require("gqml");
 const modules = require("./modules");
+// const plugins = require("./plugins");
 
-gqml.use(modules);
-gqml.use({
-  yoga: {
-    start: {
-      // APOLLO_ENGINE_KEY: "",   $ yarn add apollo-engine
-      context: ctx => ctx,
-      port: 8001
+gqml
+  // .use(plugins)
+  .use(modules)
+  .use({
+    yoga: {
+      start: {
+        // APOLLO_ENGINE_KEY: "",   $ yarn add apollo-engine
+        context: ctx => ctx,
+        port: 8001
+      }
     }
-  }
-});
+  });
 ```
 
 ```js
 // modules/Test.js
+const { p } = require("../utils");
+
 module.exports = {
   yoga: {
     typeDefs: `${__dirname}/Test.graphql`,
@@ -41,6 +46,7 @@ module.exports = {
       Query: {
         Test: {
           hide: true,
+          shield: p.checkAuth,
           resolve: (_, { name }) => `Hello ${name || "World"}`
         },
         hello: {
