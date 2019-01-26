@@ -1,5 +1,5 @@
-// const gqml = require("gqml");
-const gqml = require("../../index");
+// const { gqml } = require("gqml");
+const { gqml } = require("../../index");
 
 gqml.use({
   core: {
@@ -9,6 +9,7 @@ gqml.use({
     }
   },
   yoga: {
+    // typeDefs: `${__dirname}/schema.graphql`,
     start: {
       // APOLLO_ENGINE_KEY: "",   @yarn add apollo-engine
       context: ctx => ctx,

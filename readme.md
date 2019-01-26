@@ -35,14 +35,21 @@ gqml.use({
 // modules/Test.js
 module.exports = {
   yoga: {
-    typeDefs: `
-      type Query {
-        hello(name: String): String!
-      }
-    `,
+    typeDefs: `${__dirname}/Test.graphql`,
+    // typeDefs: `
+    //   type Query {
+    //     hello(name: String): String!
+    //   }
+    // `,
     resolvers: {
       Query: {
-        hello: (_, { name }) => `Hello ${name || "World"}`
+        Test: {
+          hide: true,
+          resolve: (_, { name }) => `Hello ${name || "World"}`
+        },
+        hello: {
+          resolve: (_, { name }) => `Hello ${name || "World"}`
+        }
       }
     }
   }
