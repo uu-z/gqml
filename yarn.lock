@@ -543,9 +543,9 @@ glob@^7.1.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-gqml@^0.0.9:
-  version "0.0.9"
-  resolved "https://registry.npmjs.org/gqml/-/gqml-0.0.9.tgz#487ceb3ca348cd3707612d6dbd8c6a8545947e77"
+gqml@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.npmjs.org/gqml/-/gqml-0.1.1.tgz#05ea8536b25bc4fcbbcd26bc530e6258b5986e21"
   dependencies:
     bluebird "^3.5.3"
     graphql-import "^0.7.1"
@@ -554,7 +554,6 @@ gqml@^0.0.9:
     lodash "^4.17.11"
     menhera "^0.9.6"
     merge-graphql-schemas "^1.5.8"
-    require-dir "^1.2.0"
     signale "^1.3.0"
 
 graceful-fs@^4.1.2:
@@ -1075,10 +1074,6 @@ regenerator-runtime@^0.11.0:
 regenerator-runtime@^0.12.0:
   version "0.12.1"
   resolved "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
-
-require-dir@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/require-dir/-/require-dir-1.2.0.tgz#0d443b75e96012d3ca749cf19f529a789ae74817"
 
 resolve-from@^4.0.0:
   version "4.0.0"
