@@ -1,4 +1,4 @@
-const { rule } = require("graphql-shield");
+const { rule } = require("gqml");
 const { getUserId } = require("../utils");
 
 module.exports = {

@@ -11,20 +11,16 @@ $ yarn add gqml
 ### example
 
 ```js
-// app.js
-const gqml = require("gqml");
+// index.js
+const { gqml } = require("gqml");
+const modules = require("./modules");
 
+gqml.use(modules);
 gqml.use({
-  core: {
-    start: {
-      // plugins:[],
-      modules: [`${__dirname}/modules`]
-    }
-  },
   yoga: {
-    context: ctx => ctx,
     start: {
-      // APOLLO_ENGINE_KEY: "",   @yarn add apollo-engine
+      // APOLLO_ENGINE_KEY: "",   $ yarn add apollo-engine
+      context: ctx => ctx,
       port: 8001
     }
   }
