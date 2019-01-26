@@ -21,7 +21,7 @@ gqml
   .use(modules)
   .use({
     yoga: {
-      options: {
+      start: {
         context: ctx => ctx,
         port: 8001
       }
