@@ -1,7 +1,7 @@
 const Mhr = require("menhera").default;
 const { aSet } = require("menhera");
 const { GraphQLServer } = require("graphql-yoga");
-const { utils } = require("./utils");
+const { utils } = require("../utils");
 const _ = require("lodash");
 const { mergeTypes } = require("merge-graphql-schemas");
 const { importSchema } = require("graphql-import");

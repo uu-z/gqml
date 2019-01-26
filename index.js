@@ -1,15 +1,8 @@
 const Mhr = require("menhera").default;
-const { utils } = require("./packages/core/utils");
-const path = require("path");
-const _ = require("lodash");
+const core = require("./packages/core");
+const plugins = require("./plugins");
 
 module.exports = {
-  gqml: Mhr.use(utils.load(path.resolve(__dirname, "./packages/core"))).use({
-    core: {
-      start: {
-        plugins: path.resolve(__dirname, "./plugins")
-      }
-    }
-  }),
+  gqml: Mhr.use(core).use(plugins),
   ...require("graphql-shield")
 };
