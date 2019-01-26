@@ -4,9 +4,14 @@ const modules = require("./modules");
 gqml.use(modules);
 gqml.use({
   yoga: {
+    // $ yarn add apollo-engine
+    // apollo: {
+    //   options: {
+    //     apiKey: ""
+    //   }
+    // },
     typeDefs: `${__dirname}/schema.graphql`,
     start: {
-      // APOLLO_ENGINE_KEY: "",   $ yarn add apollo-engine
       context: ctx => ctx,
       port: 8001
     }

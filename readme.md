@@ -21,8 +21,7 @@ gqml
   .use(modules)
   .use({
     yoga: {
-      start: {
-        // APOLLO_ENGINE_KEY: "",   $ yarn add apollo-engine
+      options: {
         context: ctx => ctx,
         port: 8001
       }

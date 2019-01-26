@@ -40,8 +40,10 @@ module.exports = {
         aSet(Mhr, { "yoga.typeDefs": ({ tar = [] }) => [...tar, ..._val] });
       }
     },
+    apollo: utils.injectItem("apollo"),
     start({ _val: options }) {
-      const { port, APOLLO_ENGINE_KEY } = options;
+      const { port } = options;
+      const apollo = utils.getItem("apollo");
       let yoga = _.get(Mhr, "yoga", {});
       yoga = { ...yoga, ...options, typeDefs: mergeTypes(yoga.typeDefs) };
       const { _resolvers } = yoga;
@@ -60,11 +62,9 @@ module.exports = {
 
       const server = new GraphQLServer(yoga);
 
-      if (APOLLO_ENGINE_KEY) {
+      if (apollo) {
         const { ApolloEngine } = require("apollo-engine");
-        const engine = new ApolloEngine({
-          apiKey: APOLLO_ENGINE_KEY
-        });
+        const engine = new ApolloEngine(apollo.options);
         const httpServer = server.createHttpServer(options);
         engine.listen(
           {
@@ -77,7 +77,7 @@ module.exports = {
           }
         );
       }
-      if (!APOLLO_ENGINE_KEY) {
+      if (!apollo) {
         server.start(options, ({ port }) => console.info(`Yoga Server is running on ${port}`));
       }
     },

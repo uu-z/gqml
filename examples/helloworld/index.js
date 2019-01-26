@@ -8,7 +8,6 @@ gqml
   .use({
     yoga: {
       start: {
-        // APOLLO_ENGINE_KEY: "",   $ yarn add apollo-engine
         context: ctx => ctx,
         port: 8001
       }

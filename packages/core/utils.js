@@ -22,6 +22,9 @@ const utils = {
       }
     };
   },
+  getItem(name) {
+    return _.get(Mhr, name);
+  },
   // Utils
   injectMethods(name) {
     return {
