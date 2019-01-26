@@ -9,7 +9,7 @@ $ yarn add gqml
 ```
 
 ```js
-const { gqml } = require("gqml");
+const { gqml } = require("../index");
 
 gqml.use({
   yoga: {
@@ -21,7 +21,6 @@ gqml.use({
     resolvers: {
       Query: {
         hello: {
-          //hide: true,
           resolve: (_, { name }) => `Hello ${name || "World"}`
         }
       }

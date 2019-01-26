@@ -82,9 +82,9 @@ module.exports = {
       }
     },
     _resolvers: {
-      $({ _key, _val }) {
+      $({ _key, _val, parent }) {
         if (_val.hide) {
-          _.set(Mhr, `yoga._resolvers.${_key}`, undefined);
+          parent[_key] = undefined;
         }
       }
     }

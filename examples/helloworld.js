@@ -10,7 +10,6 @@ gqml.use({
     resolvers: {
       Query: {
         hello: {
-          //hide: true,
           resolve: (_, { name }) => `Hello ${name || "World"}`
         }
       }
