@@ -1,18 +1,10 @@
 const { gqml } = require("gqml");
+const plugins = require("./plugins");
+const modules = require("./modules");
 
 const lambda = gqml
-  .yoga({
-    typeDefs: `
-      type Query {
-        hello(name: String): String!
-      }
-    `,
-    resolvers: {
-      Query: {
-        hello: (_, { name }) => `Hello ${name || "World"}`
-      }
-    }
-  })
+  .use(plugins)
+  .use(modules)
   .serverless();
 
 exports.server = lambda.graphqlHandler;
