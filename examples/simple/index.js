@@ -1,9 +1,9 @@
 const { gqml } = require("gqml");
+const plugins = require("./plugins");
 const modules = require("./modules");
-// const plugins = require("./plugins");
 
 gqml
-  // .use(plugins)
+  .use(plugins)
   .use(modules)
   .start({
     context: ctx => ctx,

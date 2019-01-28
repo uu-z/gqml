@@ -34,20 +34,12 @@ gqml
 
 ```js
 const { gqml } = require("gqml");
+const plugins = require("./plugins");
+const modules = require("./modules");
 
 const lambda = gqml
-  .yoga({
-    typeDefs: `
-      type Query {
-        hello(name: String): String!
-      }
-    `,
-    resolvers: {
-      Query: {
-        hello: (_, { name }) => `Hello ${name || "World"}`
-      }
-    }
-  })
+  .use(plugins)
+  .use(modules)
   .serverless();
 
 exports.server = lambda.graphqlHandler;
@@ -58,39 +50,14 @@ exports.playground = lambda.playgroundHandler;
 
 ```js
 const { gqml } = require("gqml");
+const plugins = require("./plugins");
 const modules = require("./modules");
-// const plugins = require("./plugins");
 
 gqml
-  // .use(plugins)
+  .use(plugins)
   .use(modules)
   .start({
     context: ctx => ctx,
     port: 8001
   });
-```
-
-```js
-const { p } = require("../utils");
-
-module.exports = {
-  yoga: {
-    typeDefs: `${__dirname}/Test.graphql`,
-    // typeDefs: `
-    //   type Query {
-    //     hello(name: String): String!
-    //   }
-    // `,
-    resolvers: {
-      Query: {
-        Test: {
-          hide: true,
-          shield: p.checkAuth,
-          resolve: (_, { name }) => `Hello ${name || "World"}`
-        },
-        hello: (_, { name }) => `Hello ${name || "World"}`
-      }
-    }
-  }
-};
 ```
