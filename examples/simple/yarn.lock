@@ -542,9 +542,9 @@ glob@^7.1.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-gqml@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.npmjs.org/gqml/-/gqml-0.1.4.tgz#92394941c69aa7e510cd62c83d16514324465756"
+gqml@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.npmjs.org/gqml/-/gqml-0.1.7.tgz#cec98056d15c6b8f4381f4c10eac915b3f3c1e2e"
   dependencies:
     bluebird "^3.5.3"
     graphql-import "^0.7.1"

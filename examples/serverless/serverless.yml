@@ -2,6 +2,7 @@ service: yoga-example
 
 plugins:
   - serverless-offline
+  - serverless-plugin-optimize
 
 provider:
   name: aws
@@ -22,3 +23,6 @@ functions:
           path: /
           method: get
           cors: true
+
+package:
+  individually: true

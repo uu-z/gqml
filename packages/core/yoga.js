@@ -39,11 +39,6 @@ module.exports = {
         aSet(Mhr, { "yoga.typeDefs": ({ tar = [] }) => [...tar, ..._val] });
       }
     },
-    start({ _val: options }) {
-      const yoga = utils.parseParams({ options });
-      const server = new GraphQLServer(yoga);
-      server.start(options, ({ port }) => console.info(`Yoga Server is running on ${port}`));
-    },
     _resolvers: {
       $({ _key, _val, parent }) {
         if (_val.hide) {
@@ -65,6 +60,11 @@ module.exports = {
       const options = utils.parseParams();
       const lambda = new GraphQLServerLambda(options);
       return lambda;
+    },
+    start(options) {
+      const yoga = utils.parseParams({ options });
+      const server = new GraphQLServer(yoga);
+      server.start(options, ({ port }) => console.info(`Yoga Server is running on ${port}`));
     }
   }
 };
