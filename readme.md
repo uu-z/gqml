@@ -43,7 +43,9 @@ const lambda = gqml
       }
     `,
     resolvers: {
-      Query: (_, { name }) => `Hello ${name || "World"}`
+      Query: {
+        hello: (_, { name }) => `Hello ${name || "World"}`
+      }
     }
   })
   .serverless();
