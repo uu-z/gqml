@@ -15,9 +15,7 @@ module.exports = {
           shield: p.checkAuth,
           resolve: (_, { name }) => `Hello ${name || "World"}`
         },
-        hello: {
-          resolve: (_, { name }) => `Hello ${name || "World"}`
-        }
+        hello: (_, { name }) => `Hello ${name || "World"}`
       }
     }
   }

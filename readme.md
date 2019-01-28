@@ -20,9 +20,7 @@ gqml
     `,
     resolvers: {
       Query: {
-        hello: {
-          resolve: (_, { name }) => `Hello ${name || "World"}`
-        }
+        hello: (_, { name }) => `Hello ${name || "World"}`
       }
     }
   })
@@ -45,11 +43,7 @@ const lambda = gqml
       }
     `,
     resolvers: {
-      Query: {
-        hello: {
-          resolve: (_, { name }) => `Hello ${name || "World"}`
-        }
-      }
+      Query: (_, { name }) => `Hello ${name || "World"}`
     }
   })
   .serverless();
@@ -92,9 +86,7 @@ module.exports = {
           shield: p.checkAuth,
           resolve: (_, { name }) => `Hello ${name || "World"}`
         },
-        hello: {
-          resolve: (_, { name }) => `Hello ${name || "World"}`
-        }
+        hello: (_, { name }) => `Hello ${name || "World"}`
       }
     }
   }

@@ -6,6 +6,7 @@ plugins:
 
 provider:
   name: aws
+  region: ap-northeast-1
   runtime: nodejs6.10
 
 functions:

@@ -9,9 +9,7 @@ gqml
     `,
     resolvers: {
       Query: {
-        hello: {
-          resolve: (_, { name }) => `Hello ${name || "World"}`
-        }
+        hello: (_, { name }) => `Hello ${name || "World"}`
       }
     }
   })
