@@ -1,9 +1,8 @@
 const Mhr = require("menhera").default;
 const { aSet } = require("menhera");
-const { GraphQLServer } = require("graphql-yoga");
+const { GraphQLServer, GraphQLServerLambda } = require("graphql-yoga");
 const { utils } = require("../utils");
 const _ = require("lodash");
-const { mergeTypes } = require("merge-graphql-schemas");
 const { importSchema } = require("graphql-import");
 const path = require("path");
 
@@ -40,46 +39,10 @@ module.exports = {
         aSet(Mhr, { "yoga.typeDefs": ({ tar = [] }) => [...tar, ..._val] });
       }
     },
-    apollo: utils.injectItem("apollo"),
     start({ _val: options }) {
-      const { port } = options;
-      const apollo = utils.getItem("apollo");
-      let yoga = _.get(Mhr, "yoga", {});
-      yoga = { ...yoga, ...options, typeDefs: mergeTypes(yoga.typeDefs) };
-      const { _resolvers } = yoga;
-
-      Mhr.use({
-        yoga: {
-          _resolvers
-        }
-      });
-
-      _.each(_.omitBy(_resolvers, _.isUndefined), (v, k) => {
-        if (v.resolve) {
-          _.set(yoga, `resolvers.${v.kind}.${k}`, v.resolve);
-        }
-      });
-
+      const yoga = utils.parseParams({ options });
       const server = new GraphQLServer(yoga);
-
-      if (apollo) {
-        const { ApolloEngine } = require("apollo-engine");
-        const engine = new ApolloEngine(apollo.options);
-        const httpServer = server.createHttpServer(options);
-        engine.listen(
-          {
-            port,
-            httpServer,
-            graphqlPaths: ["/"]
-          },
-          () => {
-            console.info(`Apollo Server is running on ${port}`);
-          }
-        );
-      }
-      if (!apollo) {
-        server.start(options, ({ port }) => console.info(`Yoga Server is running on ${port}`));
-      }
+      server.start(options, ({ port }) => console.info(`Yoga Server is running on ${port}`));
     },
     _resolvers: {
       $({ _key, _val, parent }) {
@@ -87,6 +50,21 @@ module.exports = {
           parent[_key] = undefined;
         }
       }
+    }
+  },
+  $mixin: {
+    $({ _key, _val }) {
+      Mhr[_key] = _val.bind(Mhr);
+    }
+  },
+  mixin: {
+    yoga(yoga) {
+      return Mhr.$use({ yoga });
+    },
+    serverless() {
+      const options = utils.parseParams();
+      const lambda = new GraphQLServerLambda(options);
+      return lambda;
     }
   }
 };

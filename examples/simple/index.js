@@ -5,11 +5,9 @@ const modules = require("./modules");
 gqml
   // .use(plugins)
   .use(modules)
-  .use({
-    yoga: {
-      start: {
-        context: ctx => ctx,
-        port: 8001
-      }
+  .yoga({
+    start: {
+      context: ctx => ctx,
+      port: 8001
     }
   });

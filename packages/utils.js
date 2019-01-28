@@ -1,5 +1,7 @@
 const Mhr = require("menhera").default;
 const _ = require("lodash");
+const { mergeTypes } = require("merge-graphql-schemas");
+
 const { error, debug, info, start, success, warn, log } = require("signale");
 global.Promise = require("bluebird");
 
@@ -14,6 +16,20 @@ Object.assign(console, {
 });
 
 const utils = {
+  parseParams({ options = {} } = {}) {
+    let yoga = _.get(Mhr, "yoga", {});
+    yoga = { ...yoga, ...options, typeDefs: mergeTypes(yoga.typeDefs) };
+    const { _resolvers } = yoga;
+
+    Mhr.use({ yoga: { _resolvers } });
+
+    _.each(_.omitBy(_resolvers, _.isUndefined), (v, k) => {
+      if (v.resolve) {
+        _.set(yoga, `resolvers.${v.kind}.${k}`, v.resolve);
+      }
+    });
+    return yoga;
+  },
   injectItem(name) {
     return {
       I({ _key, _val }) {

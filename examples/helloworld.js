@@ -1,22 +1,20 @@
 const { gqml } = require("../index");
 
-gqml.use({
-  yoga: {
-    typeDefs: `
+gqml.yoga({
+  typeDefs: `
       type Query {
         hello(name: String): String!
       }
     `,
-    resolvers: {
-      Query: {
-        hello: {
-          resolve: (_, { name }) => `Hello ${name || "World"}`
-        }
+  resolvers: {
+    Query: {
+      hello: {
+        resolve: (_, { name }) => `Hello ${name || "World"}`
       }
-    },
-    start: {
-      context: ctx => ctx,
-      port: 8001
     }
+  },
+  start: {
+    context: ctx => ctx,
+    port: 8001
   }
 });
