@@ -9,7 +9,7 @@ $ yarn add gqml
 ```
 
 ```js
-const { gqml } = require("../index");
+const { gqml } = require("gqml");
 
 gqml.yoga({
   typeDefs: `
