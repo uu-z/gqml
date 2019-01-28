@@ -34,7 +34,7 @@ gqml.yoga({
 ### example with serverless
 
 ```js
-const { gqml } = require("../../index");
+const { gqml } = require("gqml");
 
 const lambda = gqml
   .yoga({
