@@ -1,11 +1,8 @@
 const { gqml } = require("gqml");
-const plugins = require("./plugins");
-const modules = require("./modules");
+require("./plugins");
+require("./modules");
 
-const lambda = gqml
-  .use(plugins)
-  .use(modules)
-  .serverless();
+const lambda = gqml.serverless();
 
 exports.server = lambda.graphqlHandler;
 exports.playground = lambda.playgroundHandler;

@@ -1,6 +1,7 @@
 const { p } = require("../utils");
+const { gqml } = require("gqml");
 
-module.exports = {
+gqml.use({
   yoga: {
     typeDefs: `${__dirname}/Test.graphql`,
     // typeDefs: `
@@ -19,4 +20,4 @@ module.exports = {
       }
     }
   }
-};
+});

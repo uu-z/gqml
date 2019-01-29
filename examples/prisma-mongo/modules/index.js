@@ -1,3 +1,1 @@
-module.exports = {
-  _run: [require("./User")]
-};
+require("./User");

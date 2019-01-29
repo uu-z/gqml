@@ -30,34 +30,29 @@ gqml
   });
 ```
 
-### example with serverless
-
-```js
-const { gqml } = require("gqml");
-const plugins = require("./plugins");
-const modules = require("./modules");
-
-const lambda = gqml
-  .use(plugins)
-  .use(modules)
-  .serverless();
-
-exports.server = lambda.graphqlHandler;
-exports.playground = lambda.playgroundHandler;
-```
-
 ### example with modules
 
 ```js
 const { gqml } = require("gqml");
-const plugins = require("./plugins");
-const modules = require("./modules");
 
-gqml
-  .use(plugins)
-  .use(modules)
-  .start({
-    context: ctx => ctx,
-    port: 8001
-  });
+require("./plugins");
+require("./modules");
+
+gqml.start({
+  context: ctx => ctx,
+  port: 8001
+});
+```
+
+### example with serverless
+
+```js
+const { gqml } = require("gqml");
+require("./plugins");
+require("./modules");
+
+const lambda = gqml.serverless();
+
+exports.server = lambda.graphqlHandler;
+exports.playground = lambda.playgroundHandler;
 ```

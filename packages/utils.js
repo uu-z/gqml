@@ -21,7 +21,7 @@ const utils = {
     yoga = { ...yoga, ...options, typeDefs: mergeTypes(yoga.typeDefs) };
     const { _resolvers } = yoga;
 
-    Mhr.use({ yoga: { _resolvers } });
+    Mhr.use({ yoga: { handler: _resolvers } });
 
     _.each(_.omitBy(_resolvers, _.isUndefined), (v, k) => {
       if (v.resolve) {

@@ -1,5 +1,7 @@
 const { verify } = require("jsonwebtoken");
 const { APP_SECRET } = require("../config");
+const { hash, compare } = require("bcryptjs");
+const { sign } = require("jsonwebtoken");
 
 const getUserId = ctx => {
   const Authorization = ctx.request.get("Authorization");
@@ -11,5 +13,9 @@ const getUserId = ctx => {
 };
 
 module.exports = {
-  getUserId
+  getUserId,
+  sign,
+  hash,
+  compare,
+  p: require("./permission")
 };

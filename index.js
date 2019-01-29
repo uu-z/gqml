@@ -4,5 +4,6 @@ const plugins = require("./plugins");
 
 module.exports = {
   gqml: Mhr.use(core).use(plugins),
-  ...require("graphql-shield")
+  ...require("graphql-shield"),
+  ...require("graphql-yoga")
 };

@@ -1,9 +1,10 @@
 const { shield } = require("graphql-shield");
+const { gqml } = require("gqml");
 const _ = require("lodash");
 
-module.exports = {
+gqml.use({
   $yoga: {
-    _resolvers: {
+    handler: {
       _({ _val, _: gqml }) {
         let shields = {};
         _.each(_val, (v, k) => {
@@ -17,4 +18,4 @@ module.exports = {
       }
     }
   }
-};
+});

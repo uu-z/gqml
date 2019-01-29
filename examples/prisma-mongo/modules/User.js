@@ -1,19 +1,16 @@
-const { hash, compare } = require("bcryptjs");
-const { sign } = require("jsonwebtoken");
 const { APP_SECRET } = require("../config");
 const { prisma } = require("../prisma/generated/prisma-client");
-const { getUserId } = require("../utils");
-const { PubSub } = require("graphql-yoga");
-const rules = require("../utils/permission");
+const { p, hash, compare, getUserId } = require("../utils");
+const { gqml, PubSub } = require("gqml");
 
 const pubsub = new PubSub();
 
-module.exports = {
+gqml.use({
   yoga: {
     resolvers: {
       Query: {
         me: {
-          shield: rules.isAuthenticatedUser,
+          shield: p.isAuthenticatedUser,
           resolve: (parent, args, ctx) => {
             const userId = getUserId(ctx);
             return prisma.user({ id: userId });
@@ -54,4 +51,4 @@ module.exports = {
       }
     }
   }
-};
+});
