@@ -1,5 +1,4 @@
-module.exports = {
-        typeDefs: /* GraphQL */ `type AggregateComment {
+type AggregateComment {
   count: Int!
 }
 
@@ -630,6 +629,3 @@ input UserWhereUniqueInput {
   id: ID
   email: String
 }
-`
-      }
-    

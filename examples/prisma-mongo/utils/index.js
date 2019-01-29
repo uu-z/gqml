@@ -14,7 +14,7 @@ const getUserId = ctx => {
 
 module.exports = {
   getUserId,
-  sign,
+  sign: data => sign(data, APP_SECRET),
   hash,
   compare,
   p: require("./permission")

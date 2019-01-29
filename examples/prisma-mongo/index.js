@@ -1,4 +1,4 @@
-const gqml = require("gqml");
+const { gqml } = require("gqml");
 require("./modules");
 
 gqml
