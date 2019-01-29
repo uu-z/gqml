@@ -17,7 +17,7 @@ declare global {
       $: Function | Function[];
     }
     interface MhrYogaHook {
-      handler: Function | HookFunction;
+      _handler: Function | HookFunction;
     }
 
     interface UseObject {

@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "gqml": "^0.1.7"
+    "gqml": "^0.2.2"
   },
   "devDependencies": {
     "serverless": "^1.36.3",

@@ -1,10 +1,10 @@
 const { shield } = require("graphql-shield");
-const { gqml } = require("gqml");
+const Mhr = require("menhera").default;
 const _ = require("lodash");
 
-gqml.use({
+Mhr.use({
   $yoga: {
-    handler: {
+    _handler: {
       _({ _val, _: gqml }) {
         let shields = {};
         _.each(_val, (v, k) => {

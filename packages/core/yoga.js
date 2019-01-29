@@ -1,13 +1,25 @@
-const Mhr = require("menhera").default;
-const { aSet } = require("menhera");
-const { GraphQLServer, GraphQLServerLambda } = require("graphql-yoga");
-const { utils } = require("../utils");
 const _ = require("lodash");
-const { importSchema } = require("graphql-import");
 const path = require("path");
+const { aSet } = require("menhera");
+const { utils } = require("../utils");
+const Mhr = require("menhera").default;
+const { GraphQLServer, GraphQLServerLambda } = require("graphql-yoga");
+const { importSchema } = require("graphql-import");
 
-module.exports = {
+Mhr.use({
   $yoga: {
+    typeDefs: {
+      _({ _val }) {
+        _val = Array.isArray(_val) ? _val : [_val];
+        _val = _val.map(i => {
+          if (i.endsWith("graphql")) {
+            return importSchema(path.resolve(i));
+          }
+          return i;
+        });
+        aSet(Mhr, { "yoga.typeDefs": ({ tar = [] }) => [...tar, ..._val] });
+      }
+    },
     resolvers: {
       $O({ _key, _val }) {
         const key = `yoga._resolvers`;
@@ -26,26 +38,8 @@ module.exports = {
         });
       }
     },
-    middlewares: utils.injectArray("yoga.middlewares"),
-    typeDefs: {
-      _({ _val }) {
-        _val = Array.isArray(_val) ? _val : [_val];
-        _val = _val.map(i => {
-          if (i.endsWith("graphql")) {
-            return importSchema(path.resolve(i));
-          }
-          return i;
-        });
-        aSet(Mhr, { "yoga.typeDefs": ({ tar = [] }) => [...tar, ..._val] });
-      }
-    },
-    _resolvers: {
-      $({ _key, _val, parent }) {
-        if (_val.hide) {
-          parent[_key] = undefined;
-        }
-      }
-    }
+    middlewares: utils.injectArray("yoga.middlewares")
+    // _handler() {}  hook
   },
   $mixin: {
     $({ _key, _val }) {
@@ -54,7 +48,7 @@ module.exports = {
   },
   mixin: {
     yoga(yoga) {
-      return Mhr.$use({ yoga });
+      return Mhr.use({ yoga });
     },
     serverless(options) {
       const yoga = utils.parseParams({ options });
@@ -67,4 +61,4 @@ module.exports = {
       server.start(options, ({ port }) => console.info(`Yoga Server is running on ${port}`));
     }
   }
-};
+});

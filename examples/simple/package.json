@@ -4,7 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "gqml": "^0.1.7"
-  },
-  "dependencies": {}
+    "gqml": "^0.2.2"
+  }
 }

@@ -1,9 +1,8 @@
-const Mhr = require("menhera").default;
-const core = require("./packages/core");
-const plugins = require("./plugins");
+require("./packages/core");
+require("./plugins");
 
 module.exports = {
-  gqml: Mhr.use(core).use(plugins),
+  gqml: require("menhera").default,
   ...require("graphql-shield"),
   ...require("graphql-yoga")
 };
