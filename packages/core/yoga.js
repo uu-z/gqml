@@ -56,9 +56,9 @@ module.exports = {
     yoga(yoga) {
       return Mhr.$use({ yoga });
     },
-    serverless() {
-      const options = utils.parseParams();
-      const lambda = new GraphQLServerLambda(options);
+    serverless(options) {
+      const yoga = utils.parseParams({ options });
+      const lambda = new GraphQLServerLambda(yoga);
       return lambda;
     },
     start(options) {

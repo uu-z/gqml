@@ -848,6 +848,15 @@ menhera@^0.9.6:
     lodash.set "^4.3.2"
     uuid "^3.2.1"
 
+menhera@^0.9.8-rc5:
+  version "0.9.8-rc5"
+  resolved "https://registry.npmjs.org/menhera/-/menhera-0.9.8-rc5.tgz#769a02dacd33417283b2e65439e5692f36a3aa5f"
+  dependencies:
+    lodash.get "^4.4.2"
+    lodash.has "^4.5.2"
+    lodash.set "^4.3.2"
+    uuid "^3.2.1"
+
 merge-descriptors@1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/merge-descriptors/-/merge-descriptors-1.0.1.tgz#b00aaa556dd8b44568150ec9d1b953f3f90cbb61"
