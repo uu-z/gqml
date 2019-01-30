@@ -1,13 +1,20 @@
 import { Options, GraphQLServerLambda, GraphQLServer } from "graphql-yoga";
+import { Boolean } from "./examples/prisma-mongo/prisma/generated/prisma-client/index";
+import { ShieldRule } from "graphql-shield/dist/types";
 
 declare global {
   namespace Menhera {
+    interface Resolver {
+      resolve: Function;
+      shield: ShieldRule;
+      hide: Boolean;
+    }
     interface MhrYoga {
       resolvers: {
-        Query: { [key: string]: Object | Function };
-        Mutation: { [key: string]: Object | Function };
-        Subscription: { [key: string]: Object | Function };
-        [key: string]: { [key: string]: Object | Function };
+        Query: { [key: string]: Resolver | Function };
+        Mutation: { [key: string]: Resolver | Function };
+        Subscription: { [key: string]: Resolver | Function };
+        [key: string]: { [key: string]: Resolver | Function };
       };
       middlewares: any[];
       typeDefs: string | string[];
