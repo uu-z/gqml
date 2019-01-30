@@ -12,9 +12,7 @@ Mhr.use({
       _({ _val }) {
         _val = Array.isArray(_val) ? _val : [_val];
         _val = _val.map(i => {
-          if (i.endsWith("graphql")) {
-            return importSchema(path.resolve(i));
-          }
+          if (i.endsWith("graphql")) return importSchema(path.resolve(i));
           return i;
         });
         aSet(Mhr, { "yoga.typeDefs": ({ tar = [] }) => [...tar, ..._val] });
@@ -22,18 +20,19 @@ Mhr.use({
     },
     resolvers: {
       $O({ _key, _val }) {
-        const key = `yoga._resolvers`;
         aSet(Mhr, {
-          [key]: ({ tar = {} }) => {
-            _.each(_val, (v, k) => {
-              if (_.isFunction(v)) {
-                _val[k] = {
-                  resolve: v
-                };
-              }
-              _val[k].kind = _key;
-            });
-            return { ...tar, ..._val };
+          yoga: {
+            _resolvers: ({ tar = {} }) => {
+              _.each(_val, (v, k) => {
+                if (_.isFunction(v)) {
+                  _val[k] = {
+                    resolve: v
+                  };
+                }
+                _val[k].kind = _key;
+              });
+              return { ...tar, ..._val };
+            }
           }
         });
       }
