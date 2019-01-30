@@ -1,4 +1,4 @@
-import { Options, GraphQLServerLambda } from "graphql-yoga";
+import { Options, GraphQLServerLambda, GraphQLServer } from "graphql-yoga";
 
 declare global {
   namespace Menhera {
@@ -31,7 +31,7 @@ declare global {
     interface Mhr {
       yoga(data: MhrYoga): Mhr;
       serverless(): GraphQLServerLambda;
-      start(options: Options): void;
+      start(options: Options): GraphQLServer;
     }
   }
 }

@@ -30,7 +30,7 @@ const utils = {
     });
     return yoga;
   },
-  injectItem(name) {
+  InjectItem(name) {
     return {
       I({ _key, _val }) {
         const key = `${name}.${_key}`;
@@ -38,7 +38,12 @@ const utils = {
       }
     };
   },
-  getItem(name) {
+  set(object) {
+    _.each(object, (v, k) => {
+      _.set(Mhr, k, v);
+    });
+  },
+  get(name) {
     return _.get(Mhr, name);
   },
   // Utils
