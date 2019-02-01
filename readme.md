@@ -5,7 +5,7 @@ a framework base on menhera graphql-yoga
 ### Start
 
 ```bash
-$ yarn add gqml graphql-yoga
+$ yarn add gqml
 ```
 
 ```js

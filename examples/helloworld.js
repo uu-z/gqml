@@ -1,5 +1,4 @@
 const { gqml } = require("../index");
-
 gqml
   .yoga({
     typeDefs: `${__dirname}/helloworld.graphql`,

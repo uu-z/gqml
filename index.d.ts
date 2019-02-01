@@ -1,5 +1,4 @@
 import { Options, GraphQLServerLambda, GraphQLServer } from "graphql-yoga";
-import { Boolean } from "./examples/prisma-mongo/prisma/generated/prisma-client/index";
 import { ShieldRule } from "graphql-shield/dist/types";
 
 declare global {
