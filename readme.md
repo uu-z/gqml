@@ -50,6 +50,38 @@ gqml.start({
 });
 ```
 
+### example with apollo-engine
+
+```js
+require("./.env");
+const { gqml } = require("gqml");
+
+gqml
+  .yoga({
+    typeDefs: `type Query {
+      hello(name: String): String!
+    }`,
+    resolvers: {
+      Query: {
+        hello: (_, { name }) => `Hello ${name || "World"}`
+      }
+    }
+  })
+  .start({ port: null })
+  .apollo({
+    config: {
+      apiKey: process.env.ENGINE_API_KEY
+    },
+    listen: {
+      httpServer: gqml.server.createHttpServer({
+        tracing: true,
+        cacheControl: true
+      }),
+      port: 8001
+    }
+  });
+```
+
 ### example with serverless
 
 ```js

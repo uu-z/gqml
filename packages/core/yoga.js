@@ -55,12 +55,23 @@ Mhr.use({
       return lambda;
     },
     start(options) {
+      const { port } = options;
       const yoga = utils.parseParams({ options });
       const server = new GraphQLServer(yoga);
-      if (options.port) {
-        server.start(options, ({ port }) => console.info(`Yoga Server is running on ${port}`));
+      utils.set({ server });
+      if (!_.isEmpty(port)) {
+        server.start(options, ({ port }) => console.info(`Yoga Server is running on http://localhost:${port}`));
       }
-      return server;
+      return Mhr;
+    },
+    apollo({ config, listen }) {
+      const { ApolloEngine } = require("apollo-engine");
+
+      const engine = new ApolloEngine(config);
+      engine.listen(listen, () => {
+        `Server with Apollo Engine is running on http://localhost:${config.port}`;
+      });
+      return Mhr;
     }
   }
 });
