@@ -52,6 +52,10 @@ gqml.start({
 
 ### example with apollo-engine
 
+```bash
+$ yarn add apollo-engine
+```
+
 ```js
 require("./.env");
 const { gqml } = require("gqml");
