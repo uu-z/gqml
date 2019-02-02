@@ -55,11 +55,10 @@ Mhr.use({
       return lambda;
     },
     start(options) {
-      const { port } = options;
       const yoga = utils.parseParams({ options });
       const server = new GraphQLServer(yoga);
       utils.set({ server });
-      if (!_.isEmpty(port)) {
+      if (options.port) {
         server.start(options, ({ port }) => console.info(`Yoga Server is running on http://localhost:${port}`));
       }
       return Mhr;

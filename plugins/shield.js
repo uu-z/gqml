@@ -12,9 +12,7 @@ Mhr.use({
             _.set(shields, `${v.kind}.${k}`, v.shield);
           }
         });
-        gqml.use({
-          yoga: { middlewares: [shield(shields)] }
-        });
+        Mhr.yoga({ middlewares: [shield(shields)] });
       }
     }
   }
