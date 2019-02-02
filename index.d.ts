@@ -41,9 +41,9 @@ declare global {
     }
 
     interface Gqml extends MhrStatic {
-      yoga(data: MhrYoga): Mhr;
+      yoga(data: MhrYoga): Gqml;
       serverless(): GraphQLServerLambda;
-      apollo(data: GqmlApolloConfig): Mhr;
+      apollo(data: GqmlApolloConfig): Gqml;
       server?: GraphQLServer;
     }
   }
