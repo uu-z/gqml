@@ -1,14 +1,6 @@
 const { gqml } = require("../index");
 gqml
   .yoga({
-    typeDefs: `${__dirname}/helloworld.graphql`,
-    resolvers: {
-      Query: {
-        foo: (_, { name }) => `Hello ${name || "World"}`
-      }
-    }
-  })
-  .yoga({
     typeDefs: `type Query {
       hello(name: String): String!
     }`,
