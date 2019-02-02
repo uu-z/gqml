@@ -1,5 +1,5 @@
-import "./.env";
-import { gqml } from "../index";
+require("./.env");
+const { gqml } = require("../index");
 
 gqml
   .yoga({

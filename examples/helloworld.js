@@ -1,4 +1,4 @@
-import { gqml } from "../index";
+const { gqml } = require("../index");
 
 gqml.yoga({
   typeDefs: `type Query {
