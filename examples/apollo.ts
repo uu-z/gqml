@@ -1,5 +1,5 @@
-require("./.env");
-const { gqml } = require("../index");
+import "./.env";
+import { gqml } from "../index";
 
 gqml
   .yoga({
@@ -10,9 +10,11 @@ gqml
       Query: {
         hello: (_, { name }) => `Hello ${name || "World"}`
       }
+    },
+    listen: {
+      port: null
     }
   })
-  .start({ port: null })
   .apollo({
     config: {
       apiKey: process.env.ENGINE_API_KEY

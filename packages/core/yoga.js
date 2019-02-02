@@ -6,40 +6,57 @@ const Mhr = require("menhera").default;
 const { GraphQLServer, GraphQLServerLambda } = require("graphql-yoga");
 const { importSchema } = require("graphql-import");
 
-Mhr.use({
-  $yoga: {
-    typeDefs: {
-      _({ _val }) {
-        _val = Array.isArray(_val) ? _val : [_val];
-        _val = _val.map(i => {
-          if (i.endsWith("graphql")) return importSchema(path.resolve(i));
-          return i;
-        });
-        aSet(Mhr, { "yoga.typeDefs": ({ tar = [] }) => [...tar, ..._val] });
-      }
-    },
-    resolvers: {
-      $O({ _key, _val }) {
-        aSet(Mhr, {
-          yoga: {
-            _resolvers: ({ tar = {} }) => {
-              _.each(_val, (v, k) => {
-                if (_.isFunction(v)) {
-                  _val[k] = {
-                    resolve: v
-                  };
-                }
-                _val[k].kind = _key;
-              });
-              return { ...tar, ..._val };
+const typeDefs = {
+  _({ _val }) {
+    _val = Array.isArray(_val) ? _val : [_val];
+    _val = _val.map(i => {
+      if (i.endsWith("graphql")) return importSchema(path.resolve(i));
+      return i;
+    });
+    aSet(Mhr, { "schema.typeDefs": ({ tar = [] }) => [...tar, ..._val] });
+  }
+};
+
+const resolvers = {
+  $O({ _key, _val }) {
+    aSet(Mhr, {
+      schema: {
+        _resolvers: ({ tar = {} }) => {
+          _.each(_val, (v, k) => {
+            if (_.isFunction(v)) {
+              _val[k] = {
+                resolve: v
+              };
             }
-          }
-        });
+            _val[k].kind = _key;
+          });
+          return { ...tar, ..._val };
+        }
       }
-    },
-    middlewares: utils.injectArray("yoga.middlewares")
-    // _handler() {}  hook
+    });
+  }
+};
+
+Mhr.use({
+  $apollo: {
+    typeDefs,
+    resolvers
   },
+  $yoga: {
+    typeDefs,
+    resolvers,
+    middlewares: utils.injectArray("yoga.middlewares"),
+    listen({ _val: options, parent }) {
+      const schema = utils.parseParams();
+      const server = new GraphQLServer({ ...schema, ...parent.options });
+      utils.set({ server });
+      if (options.port) {
+        server.start(options, ({ port }) => console.info(`Yoga Server is running on http://localhost:${port}`));
+      }
+      return Mhr;
+    }
+  },
+  // _handler() {}  hook
   $mixin: {
     $({ _key, _val }) {
       Mhr[_key] = _val.bind(Mhr);
@@ -53,15 +70,6 @@ Mhr.use({
       const yoga = utils.parseParams({ options });
       const lambda = new GraphQLServerLambda(yoga);
       return lambda;
-    },
-    start(options) {
-      const yoga = utils.parseParams({ options });
-      const server = new GraphQLServer(yoga);
-      utils.set({ server });
-      if (options.port) {
-        server.start(options, ({ port }) => console.info(`Yoga Server is running on http://localhost:${port}`));
-      }
-      return Mhr;
     },
     apollo({ config, listen }) {
       const { ApolloEngine } = require("apollo-engine");

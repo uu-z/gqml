@@ -16,19 +16,19 @@ Object.assign(console, {
 });
 
 const utils = {
-  parseParams({ options = {} } = {}) {
-    let yoga = _.get(Mhr, "yoga", {});
-    yoga = { ...yoga, ...options, typeDefs: mergeTypes(yoga.typeDefs) };
-    const { _resolvers } = yoga;
+  parseParams() {
+    let schema = _.get(Mhr, "schema", {});
+    schema = { ...schema, typeDefs: mergeTypes(schema.typeDefs) };
+    const { _resolvers } = schema;
 
-    Mhr.use({ yoga: { _handler: _resolvers } });
+    Mhr.use({ _resolvers });
 
     _.each(_.omitBy(_resolvers, _.isUndefined), (v, k) => {
       if (v.resolve) {
-        _.set(yoga, `resolvers.${v.kind}.${k}`, v.resolve);
+        _.set(schema, `resolvers.${v.kind}.${k}`, v.resolve);
       }
     });
-    return yoga;
+    return schema;
   },
   InjectItem(name) {
     return {

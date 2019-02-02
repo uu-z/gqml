@@ -2,53 +2,49 @@ import { Options, GraphQLServerLambda, GraphQLServer } from "graphql-yoga";
 import { ShieldRule } from "graphql-shield/dist/types";
 import { ListenOptions } from "apollo-engine/lib/engine";
 import { EngineConfig } from "apollo-engine/lib/types";
+import { Props } from "graphql-yoga/dist/types";
 
 declare global {
   namespace Menhera {
     interface Resolver {
-      resolve: Function;
-      shield: ShieldRule;
-      hide: Boolean;
+      resolve?: Function;
+      shield?: ShieldRule;
+      hide?: Boolean;
     }
     interface MhrYoga {
-      resolvers: {
-        Query: { [key: string]: Resolver | Function };
-        Mutation: { [key: string]: Resolver | Function };
-        Subscription: { [key: string]: Resolver | Function };
+      resolvers?: {
+        Query?: { [key: string]: Resolver | Function };
+        Mutation?: { [key: string]: Resolver | Function };
+        Subscription?: { [key: string]: Resolver | Function };
         [key: string]: { [key: string]: Resolver | Function };
       };
-      middlewares: any[];
-      typeDefs: string | string[];
+      middlewares?: any[];
+      typeDefs?: string | string[];
+      options?: Props;
+      listen?: Options;
     }
     interface HookFunction {
-      _: Function | Function[];
-      $: Function | Function[];
-    }
-    interface MhrYogaHook {
-      _handler: Function | HookFunction;
+      _?: Function | Function[];
+      $?: Function | Function[];
     }
 
     interface UseObject {
-      $yoga: MhrYogaHook;
-      yoga: MhrYoga;
-      mixins: {
+      yoga?: MhrYoga;
+      mixins?: {
         [key: string]: Function;
       };
+      _resolvers?: Function | HookFunction;
     }
     interface GqmlApolloConfig {
-      config: EngineConfig;
-      listen: ListenOptions;
-    }
-
-    interface Mhr {
-      yoga(data: MhrYoga): Mhr;
-      serverless(): GraphQLServerLambda;
-      start(options: Options): Mhr;
-      apollo(data: GqmlApolloConfig): Mhr;
+      config?: EngineConfig;
+      listen?: ListenOptions;
     }
 
     interface Gqml extends MhrStatic {
-      server: GraphQLServer;
+      yoga(data: MhrYoga): Mhr;
+      serverless(): GraphQLServerLambda;
+      apollo(data: GqmlApolloConfig): Mhr;
+      server?: GraphQLServer;
     }
   }
 }
