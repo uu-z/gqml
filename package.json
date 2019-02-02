@@ -1,6 +1,6 @@
 {
   "name": "gqml",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
@@ -14,8 +14,8 @@
     "signale": "^1.3.0"
   },
   "devDependencies": {
-    "apollo-engine": "^1.1.2",
     "@types/typescript": "^2.0.0",
+    "apollo-engine": "^1.1.2",
     "typescript": "^3.3.1"
   }
 }
