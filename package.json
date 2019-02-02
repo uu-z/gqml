@@ -16,7 +16,6 @@
   },
   "devDependencies": {
     "@types/typescript": "^2.0.0",
-    "gqml": "^0.1.2",
     "typescript": "^3.3.1"
   }
 }
