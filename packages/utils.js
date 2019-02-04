@@ -16,18 +16,24 @@ Object.assign(console, {
 });
 
 const utils = {
-  parseParams() {
-    let schema = _.get(Mhr, "schema", {});
-    schema = { ...schema, typeDefs: mergeTypes(schema.typeDefs) };
-    const { _resolvers } = schema;
-
-    Mhr.use({ hook: { _resolvers } });
-
+  parseResolver(_resolvers) {
+    let resolvers = {};
     _.each(_.omitBy(_resolvers, _.isUndefined), (v, k) => {
       if (v.resolve) {
-        _.set(schema, `resolvers.${v.kind}.${k}`, v.resolve);
+        _.set(resolvers, `${v.kind}.${k}`, v.resolve);
       }
     });
+    return resolvers;
+  },
+  parseParams() {
+    let { schema } = Mhr;
+    Mhr.use({ hook: { _resolvers: schema._resolvers } });
+    Object.assign(schema, {
+      typeDefs: mergeTypes(schema.typeDefs),
+      resolvers: utils.parseResolver(schema._resolvers),
+      _resolvers: null
+    });
+
     return schema;
   },
   InjectItem(name) {
