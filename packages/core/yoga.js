@@ -71,12 +71,12 @@ Mhr.use({
       const lambda = new GraphQLServerLambda(yoga);
       return lambda;
     },
-    apollo({ config, listen }) {
+    apollo({ options, listen }) {
       const { ApolloEngine } = require("apollo-engine");
 
-      const engine = new ApolloEngine(config);
+      const engine = new ApolloEngine(options);
       engine.listen(listen, () => {
-        `Server with Apollo Engine is running on http://localhost:${config.port}`;
+        `Server with Apollo Engine is running on http://localhost:${options.port}`;
       });
       return Mhr;
     }

@@ -20,8 +20,9 @@ const utils = {
     let schema = _.get(Mhr, "schema", {});
     schema = { ...schema, typeDefs: mergeTypes(schema.typeDefs) };
     const { _resolvers } = schema;
+    console.log(_resolvers);
 
-    Mhr.use({ _resolvers });
+    Mhr.use({ hook: { _resolvers } });
 
     _.each(_.omitBy(_resolvers, _.isUndefined), (v, k) => {
       if (v.resolve) {

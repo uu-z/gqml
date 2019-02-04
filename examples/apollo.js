@@ -16,7 +16,7 @@ gqml
     }
   })
   .apollo({
-    config: {
+    options: {
       apiKey: process.env.ENGINE_API_KEY
     },
     listen: {

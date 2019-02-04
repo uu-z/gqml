@@ -28,19 +28,24 @@ declare global {
       $?: Function | Function[];
     }
 
+    interface Hook {
+      _resolvers?: Function | HookFunction;
+    }
+
     interface UseObject {
       yoga?: MhrYoga;
+      $hook?: Hook;
       mixins?: {
         [key: string]: Function;
       };
-      _resolvers?: Function | HookFunction;
     }
     interface GqmlApolloConfig {
-      config?: EngineConfig;
+      options?: EngineConfig;
       listen?: ListenOptions;
     }
 
     interface Gqml extends MhrStatic {
+      constructor(): Gqml;
       yoga(data: MhrYoga): Gqml;
       serverless(): GraphQLServerLambda;
       apollo(data: GqmlApolloConfig): Gqml;
