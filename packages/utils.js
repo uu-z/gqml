@@ -20,7 +20,6 @@ const utils = {
     let schema = _.get(Mhr, "schema", {});
     schema = { ...schema, typeDefs: mergeTypes(schema.typeDefs) };
     const { _resolvers } = schema;
-    console.log(_resolvers);
 
     Mhr.use({ hook: { _resolvers } });
 
