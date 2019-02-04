@@ -45,7 +45,7 @@ Mhr.use({
   $yoga: {
     typeDefs,
     resolvers,
-    middlewares: utils.injectArray("yoga.middlewares"),
+    middlewares: utils.injectArray("schema.middlewares"),
     listen({ _val: options, parent }) {
       const schema = utils.parseParams();
       const server = new GraphQLServer({ ...schema, ...parent.options });
