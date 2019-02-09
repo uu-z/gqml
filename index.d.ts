@@ -9,7 +9,6 @@ declare global {
     interface Resolver {
       resolve?: Function;
       shield?: ShieldRule;
-      hide?: Boolean;
     }
     interface MhrYoga {
       resolvers?: {
@@ -44,16 +43,16 @@ declare global {
       listen?: ListenOptions;
     }
 
-    interface Gqml extends MhrStatic {
-      constructor(): Gqml;
-      yoga(data: MhrYoga): Gqml;
+    interface Mhr {
+      constructor(): Mhr;
+      yoga(data: MhrYoga): Mhr;
       serverless(): GraphQLServerLambda;
-      apollo(data: GqmlApolloConfig): Gqml;
+      apollo(data: GqmlApolloConfig): Mhr;
       server?: GraphQLServer;
     }
   }
 }
 
-export const gqml: Menhera.Gqml;
+export const gqml: Menhera.Mhr;
 export * from "graphql-shield";
 export * from "graphql-yoga";
