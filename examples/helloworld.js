@@ -1,9 +1,11 @@
-const { gqml } = require("../index");
+const { gqml, gql } = require("../index");
 
 gqml.yoga({
-  typeDefs: `type Query {
+  typeDefs: gql`
+    type Query {
       hello(name: String): String!
-    }`,
+    }
+  `,
   resolvers: {
     Query: {
       hello: (_, { name }) => `Hello ${name || "World"}`
