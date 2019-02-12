@@ -1,12 +1,13 @@
 {
   "name": "gqml",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.3",
     "graphql-import": "^0.7.1",
     "graphql-shield": "^4.1.1",
+    "graphql-voyager": "^1.0.0-rc.26",
     "graphql-yoga": "^1.17.1",
     "lodash": "^4.17.11",
     "menhera": "^0.9.9-rc3",
