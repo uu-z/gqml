@@ -21,6 +21,7 @@ declare global {
       typeDefs?: string | string[];
       options?: Props;
       listen?: Options;
+      beforeStart?: (Mhr: Mhr) => Mhr;
     }
     interface HookFunction {
       _?: Function | Function[];

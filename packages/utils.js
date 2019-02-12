@@ -27,7 +27,7 @@ const utils = {
   },
   parseParams() {
     let { schema } = Mhr;
-    Mhr.use({ hook: { _resolvers: schema._resolvers } });
+    Mhr.use({ hooks: { _resolvers: schema._resolvers } });
     Object.assign(schema, {
       typeDefs: mergeTypes(schema.typeDefs),
       resolvers: utils.parseResolver(schema._resolvers),

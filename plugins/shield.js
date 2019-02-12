@@ -3,7 +3,7 @@ const Mhr = require("menhera").default;
 const _ = require("lodash");
 
 Mhr.use({
-  $hook: {
+  $hooks: {
     _resolvers: {
       _({ _val, _: gqml }) {
         let shields = {};

@@ -12,6 +12,11 @@ gqml.yoga({
   options: {
     context: ctx => ctx
   },
+  beforeStart: ({ server }) => {
+    server.get("/test", (req, res) => {
+      res.send("Hello World!");
+    });
+  },
   listen: {
     port: 8001
   }
