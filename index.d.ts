@@ -3,6 +3,8 @@ import { ShieldRule } from "graphql-shield/dist/types";
 import { ListenOptions } from "apollo-engine/lib/engine";
 import { EngineConfig } from "apollo-engine/lib/types";
 import { Props } from "graphql-yoga/dist/types";
+import {} from "graphql-voyager/middleware";
+import { MiddlewareOptions } from "graphql-voyager/middleware/render-voyager-page";
 
 declare global {
   namespace Menhera {
@@ -22,6 +24,7 @@ declare global {
       options?: Props;
       listen?: Options;
       beforeStart?: (Mhr: Mhr) => Mhr;
+      voyager?: MiddlewareOptions;
     }
     interface HookFunction {
       _?: Function | Function[];

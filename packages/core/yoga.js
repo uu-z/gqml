@@ -43,19 +43,24 @@ Mhr.use({
     resolvers
   },
   $yoga: {
-    _({ _val }) {
-      _.set(Mhr, "_yoga", _val);
-    },
     typeDefs,
     resolvers,
     middlewares: utils.injectArray("schema.middlewares"),
+    beforeStart: ({ _val: fn }) => {
+      Mhr.use({
+        $hooks: {
+          beforeStart() {
+            fn(Mhr);
+          }
+        }
+      });
+    },
     listen({ _val: options, parent }) {
-      const { beforeStart } = Mhr._yoga;
       const schema = utils.parseParams();
       const server = new GraphQLServer({ ...schema, ...parent.options });
       utils.set({ server });
       if (options.port) {
-        beforeStart(Mhr);
+        Mhr.use({ hooks: { beforeStart: {} } });
         server.start(options, ({ port }) => console.info(`Yoga Server is running on http://localhost:${port}`));
       }
       return Mhr;

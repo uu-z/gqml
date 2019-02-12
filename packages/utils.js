@@ -53,6 +53,14 @@ const utils = {
     return _.get(Mhr, name);
   },
   // Utils
+  injectMethod(name) {
+    return {
+      F({ _val }) {
+        const key = `${name}`;
+        _.set(Mhr, key, _val);
+      }
+    };
+  },
   injectMethods(name) {
     return {
       $({ _key, _val }) {
