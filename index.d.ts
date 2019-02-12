@@ -24,7 +24,10 @@ declare global {
       options?: Props;
       listen?: Options;
       beforeStart?: (Mhr: Mhr) => Mhr;
-      voyager?: MiddlewareOptions;
+      voyager?: {
+        endpoint: string;
+        options?: MiddlewareOptions;
+      };
     }
     interface HookFunction {
       _?: Function | Function[];

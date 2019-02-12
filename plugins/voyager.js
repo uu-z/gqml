@@ -3,10 +3,10 @@ const { express } = require("graphql-voyager/middleware");
 
 Mhr.use({
   $yoga: {
-    voyager({ _val: options }) {
+    voyager({ _val: { options, endpoint = "/voyager" } = {}, parent }) {
       Mhr.yoga({
         beforeStart: ({ server }) => {
-          server.use("/voyager", express(options));
+          server.use(endpoint, express(options));
         }
       });
     }
