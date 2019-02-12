@@ -1,3 +1,4 @@
 module.exports = {
-  p: require("./permission")
+  p: require("./permission"),
+  gql: str => str
 };

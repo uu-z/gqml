@@ -7,7 +7,7 @@
     "start": "node index.js"
   },
   "devDependencies": {
-    "gqml": "^0.2.5-rc1"
+    "gqml": "^0.4.4"
   },
   "dependencies": {
     "graphql-yoga": "^1.17.1"

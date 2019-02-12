@@ -1,9 +1,10 @@
+require("./plugins");
 const { gqml } = require("gqml");
 
-require("./plugins");
-require("./modules");
-
 gqml.yoga({
+  options: {
+    context: ctx => ctx
+  },
   listen: {
     port: 8001
   }
