@@ -54,7 +54,7 @@ declare global {
       constructor(): Mhr;
       yoga(data: MhrYoga): Mhr;
       serverless(): GraphQLServerLambda;
-      apollo(data: GqmlApolloConfig): Mhr;
+      apolloEngine(data: GqmlApolloConfig): Mhr;
       server?: GraphQLServer;
     }
   }

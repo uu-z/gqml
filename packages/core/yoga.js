@@ -80,7 +80,7 @@ Mhr.use({
       const lambda = new GraphQLServerLambda(yoga);
       return lambda;
     },
-    apollo({ options, listen }) {
+    apolloEngine({ options, listen }) {
       const { ApolloEngine } = require("apollo-engine");
       const engine = new ApolloEngine(options);
       engine.listen(listen, () => {

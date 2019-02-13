@@ -17,7 +17,7 @@ gqml
       port: null
     }
   })
-  .apollo({
+  .apolloEngine({
     options: {
       apiKey: process.env.ENGINE_API_KEY
     },
