@@ -64,8 +64,8 @@ gqml
       port: null
     }
   })
-  .apollo({
-    config: {
+  .apolloEngine({
+    options: {
       apiKey: process.env.ENGINE_API_KEY
     },
     listen: {
@@ -82,8 +82,6 @@ gqml
 
 ```js
 const { gqml } = require("gqml");
-
-require("./plugins");
 require("./modules");
 
 gqml.yoga({
