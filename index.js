@@ -1,4 +1,4 @@
-require("./packages/core");
+require("./packages");
 require("./plugins");
 
 module.exports = {

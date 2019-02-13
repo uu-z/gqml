@@ -50,12 +50,18 @@ declare global {
       listen?: ListenOptions;
     }
 
+    interface GqmlSchema {
+      typedefs: string;
+      resolvers: any;
+    }
+
     interface Mhr {
       constructor(): Mhr;
       yoga(data: MhrYoga): Mhr;
       serverless(): GraphQLServerLambda;
       apolloEngine(data: GqmlApolloConfig): Mhr;
       server?: GraphQLServer;
+      schema(): GqmlSchema;
     }
   }
 }

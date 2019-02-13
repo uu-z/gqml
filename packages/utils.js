@@ -28,13 +28,11 @@ const utils = {
   parseParams() {
     let { schema } = Mhr;
     Mhr.use({ hooks: { _resolvers: schema._resolvers } });
-    Object.assign(schema, {
-      typeDefs: mergeTypes(schema.typeDefs),
-      resolvers: utils.parseResolver(schema._resolvers),
-      _resolvers: null
-    });
 
-    return schema;
+    return {
+      typeDefs: mergeTypes(schema.typeDefs),
+      resolvers: utils.parseResolver(schema._resolvers)
+    };
   },
   InjectItem(name) {
     return {
