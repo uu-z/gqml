@@ -26,6 +26,7 @@ gqml
         tracing: true,
         cacheControl: true
       }),
-      port: 8001
+      port: 8001,
+      graphqlPaths: ["/"]
     }
   });

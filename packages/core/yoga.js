@@ -83,9 +83,7 @@ Mhr.use({
     apolloEngine({ options, listen }) {
       const { ApolloEngine } = require("apollo-engine");
       const engine = new ApolloEngine(options);
-      engine.listen(listen, () => {
-        `Server with Apollo Engine is running on http://localhost:${options.port}`;
-      });
+      engine.listen(listen, () => console.info(`Server with Apollo Engine is running on http://localhost:${options.port}`));
       return Mhr;
     }
   }
