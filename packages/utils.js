@@ -19,12 +19,7 @@ const utils = {
   parseResolver(_resolvers) {
     let resolvers = {};
     _.each(_.omitBy(_resolvers, _.isUndefined), (v, k) => {
-      if (v.kind == "Subscription") {
-        return _.set(resolvers, `${v.kind}.${k}`, v);
-      }
-      if (v.resolve) {
-        _.set(resolvers, `${v.kind}.${k}`, v.resolve);
-      }
+      _.set(resolvers, `${v.kind}.${k}`, v);
     });
     return resolvers;
   },
