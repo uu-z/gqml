@@ -10,7 +10,9 @@ declare global {
   namespace Menhera {
     interface Resolver {
       resolve?: Function;
+      subscribe?: Function;
       shield?: ShieldRule;
+      [key: string]: any;
     }
     interface MhrYoga {
       resolvers?: {
