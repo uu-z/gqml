@@ -30,7 +30,7 @@ const utils = {
     Mhr.use({ hooks: { _resolvers: schema._resolvers } });
 
     return {
-      typeDefs: mergeTypes(schema.typeDefs),
+      typeDefs: mergeTypes(schema.typeDefs,{all: true}),
       resolvers: utils.parseResolver(schema._resolvers)
     };
   },
