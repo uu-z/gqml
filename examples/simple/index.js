@@ -1,4 +1,4 @@
-require("./plugins");
+require("./modules");
 const { gqml } = require("gqml");
 
 gqml.yoga({

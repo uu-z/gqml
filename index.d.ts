@@ -8,6 +8,13 @@ import { MiddlewareOptions } from "graphql-voyager/middleware/render-voyager-pag
 
 declare global {
   namespace Menhera {
+    interface Resolvers {
+      Query?: { [key: string]: Resolver | Function };
+      Mutation?: { [key: string]: Resolver | Function };
+      Subscription?: { [key: string]: Resolver | Function };
+      [key: string]: { [key: string]: Resolver | Function };
+    }
+
     interface Resolver {
       resolve?: Function;
       subscribe?: Function;
@@ -15,14 +22,9 @@ declare global {
       [key: string]: any;
     }
     interface MhrYoga {
-      resolvers?: {
-        Query?: { [key: string]: Resolver | Function };
-        Mutation?: { [key: string]: Resolver | Function };
-        Subscription?: { [key: string]: Resolver | Function };
-        [key: string]: { [key: string]: Resolver | Function };
-      };
-      middlewares?: any[];
       typeDefs?: string | string[];
+      resolvers?: Resolvers;
+      middlewares?: any[];
       options?: Props;
       listen?: Options;
       beforeStart?: (Mhr: Mhr) => Mhr;
@@ -41,6 +43,8 @@ declare global {
     }
 
     interface UseObject {
+      typeDefs?: string | string[];
+      resolvers?: Resolvers;
       yoga?: MhrYoga;
       $hook?: Hook;
       mixins?: {
