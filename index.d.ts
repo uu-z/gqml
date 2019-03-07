@@ -57,7 +57,7 @@ declare global {
     }
 
     interface GqmlSchema {
-      typedefs: string;
+      typeDefs: string;
       resolvers: any;
     }
 
